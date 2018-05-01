@@ -18,6 +18,11 @@ define('PORTFOLIO_PLUGIN_URL',__FILE__);
 
 //Includes
 include('includes/enqueue.php');
+include('includes/restapi.php');
 
 //Hooks
-add_action('wp_enqueue_scripts','fs_plugin_scripts',100);
+add_action( 'wp_enqueue_scripts', 'fs_plugin_scripts', 100);
+add_action( 'init', 'fs_add_avada_portfolio_to_rest', 25 );
+
+
+

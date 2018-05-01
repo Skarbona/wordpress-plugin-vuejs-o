@@ -1,45 +1,36 @@
 <template>
-  <div>
-      TEST INFO
+  <div id="app">
+      TEST INFO 1
+      {{ testValue }}
+
   </div>
 </template>
 
 <script>
+import axios from 'axios'
+
 export default {
-  name: 'app',
-  data () {
-    return {
-      msg: 'Welcome to Your Vue.js App'
+    data() {
+        return {
+            portfolio: ''
+        }
+    },
+    computed: {
+        testValue() {
+            return this.$store.getters['wordpressRest/getTestValue'];
+        }
+    },
+    created() {
+        axios.get(wp_rest_api.base_url + 'avada_portfolio?per_page=100')
+            .then( success => {
+                console.log(success.data);
+                this.portfolio = success.data;
+            })
+            .catch( error => console.log(error))
     }
-  }
 }
 </script>
 
 <style lang="scss">
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
 
-h1, h2 {
-  font-weight: normal;
-}
-
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
-
-a {
-  color: #42b983;
-}
 </style>
