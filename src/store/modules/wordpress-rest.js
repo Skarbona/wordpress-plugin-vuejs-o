@@ -2,15 +2,13 @@ import axios from 'axios';
 
 const state = {
 
-    testValue: 'Testowa wartość, aby sprawdzić czy wszystko działa',
+
     portfolioData: []
 
 };
 
 const getters = {
-    getTestValue: (state) => {
-        return state.testValue;
-    },
+
     getPortfolioData: (state) => {
         console.log(state.portfolioData);
         return state.portfolioData;
