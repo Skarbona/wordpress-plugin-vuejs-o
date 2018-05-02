@@ -12,9 +12,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-
-                        </tr>
+                        <v-fs-tr-table v-for="(portfolio,index) in portfolioItems" :key="index" :portfolio="portfolio" ></v-fs-tr-table>
                     </tbody>
                 </table>
             </div>
@@ -22,7 +20,11 @@
 </template>
 
 <script>
+    import Table from './componentsApp2/Table.vue';
     export default {
+        components: {
+            'v-fs-tr-table': Table
+        },
         computed: {
             portfolioItems() {
                 return this.$store.getters['wordpressRest/getPortfolioData'];

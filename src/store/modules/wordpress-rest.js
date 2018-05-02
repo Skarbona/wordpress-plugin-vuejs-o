@@ -28,8 +28,8 @@ const actions = {
     getPortfolio({commit}){
         axios.get(wp_rest_api.base_url + 'avada_portfolio?per_page=100')
             .then( success => {
-                console.log(success);
-                commit('showPortfolio',success)
+                //console.log(success);
+                commit('showPortfolio',success.data)
             })
             .catch( error => console.log(error))
         }
