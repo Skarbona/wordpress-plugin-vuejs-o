@@ -16,12 +16,14 @@
                     </tbody>
                 </table>
             </div>
+
     </div>
 </template>
 
 <script>
     import Table from './componentsApp2/Table.vue';
     export default {
+
         components: {
             'v-fs-tr-table': Table
         },
@@ -29,8 +31,10 @@
             portfolioItems() {
                 return this.$store.getters['wordpressRest/getPortfolioData'];
             }
+
         },
         created() {
+
                 this.$store.dispatch('wordpressRest/getPortfolio');
         }
     }
