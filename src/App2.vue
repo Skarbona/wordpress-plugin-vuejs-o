@@ -3,12 +3,19 @@
             <div class="table-1">
                 <table width="100%">
                     <thead>
-                        <tr>
-                            <th align="left">Column 0</th>
-                            <th align="left">Column 1</th>
-                            <th align="left">Column 2</th>
-                            <th align="left">Column 3</th>
-                            <th align="left">Column 4</th>
+                        <tr v-if="getLanguagePL">
+                            <th align="left">Adres</th>
+                            <th align="left">Dostępność</th>
+                            <th align="left">Piętro</th>
+                            <th align="left">Powierzchnia</th>
+                            <th align="left">Kontakt</th>
+                        </tr>
+                        <tr v-if="getLanguageEN">
+                            <th align="left">Adressess</th>
+                            <th align="left">Dostępność</th>
+                            <th align="left">Piętro EN</th>
+                            <th align="left">Pow EN</th>
+                            <th align="left">Contact</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -30,7 +37,14 @@
         computed: {
             portfolioItems() {
                 return this.$store.getters['wordpressRest/getPortfolioData'];
+            },
+            getLanguagePL() {
+                return document.documentElement.lang === 'pl-PL'
+            },
+            getLanguageEN() {
+                return document.documentElement.lang === 'en-US'
             }
+
 
         },
         created() {

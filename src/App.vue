@@ -19,7 +19,9 @@ export default {
             return this.$store.getters['wordpressRest/getPortfolioData'];
         }
 
+
     },
+
     created() {
 
         this.$store.dispatch('wordpressRest/getPortfolio');

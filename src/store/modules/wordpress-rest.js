@@ -27,10 +27,9 @@ const mutations = {
 
 const actions = {
     getPortfolio({commit}){
-
-        axios.get(wp_rest_api.base_url + 'avada_portfolio?per_page=100')
+        axios.get(wp_rest_api.base_url + 'avada_portfolio?_embed')
             .then( success => {
-                //console.log(success);
+                console.log(success.data);
                 commit('showPortfolio',success.data)
             })
             .catch( error => console.log(error))
