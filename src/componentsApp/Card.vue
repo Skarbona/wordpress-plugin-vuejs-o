@@ -12,6 +12,18 @@
                    </div>
                    <div class="portfolio-popup__container__image">
                        <img :src="imgURL">
+                        <ul v-if="getLanguagePL">
+                           <li>Adres: {{ portfolio.acf.adres.address }}</li>
+                           <li>Dostępność: {{ portfolio.acf.dostepnosc }}</li>
+                           <li>Piętro: {{ portfolio.acf.pietro }}</li>
+                           <li>Powierzchnia: {{ portfolio.acf.powierzchnia }}</li>
+                        </ul>
+                        <ul v-if="getLanguageEN">
+                           <li>Adressess: {{ portfolio.acf.adres.address }}</li>
+                           <li>Availability: {{ portfolio.acf.dostepnosc }}</li>
+                           <li>Floor: {{ portfolio.acf.pietro }}</li>
+                           <li>Area: {{ portfolio.acf.powierzchnia }}</li>
+                        </ul>
                    </div>
                    <div class="portfolio-popup__container__content">
                        <h3 class="portfolio-popup__container__content__title">{{ portfolio.title.rendered }}</h3>
@@ -31,14 +43,21 @@
             return {
                 imgURL : this.portfolio._embedded['wp:featuredmedia']['0'].source_url,
                 portfolioVisibility : false,
-                htmlContent: '<p>TEST</p>'
-                //htmlContent : portfolio.content.rendered
+
         }
         },
         methods: {
             changeVisibility(){
                 jQuery('.fusion-header-wrapper').toggleClass('visibility-index');
                 return this.portfolioVisibility = !this.portfolioVisibility;
+            }
+        },
+        computed: {
+            getLanguagePL() {
+                return document.documentElement.lang === 'pl-PL'
+            },
+            getLanguageEN() {
+                return document.documentElement.lang === 'en-US'
             }
         },
         props: ['portfolio'],
@@ -71,7 +90,7 @@
         display:flex;
         justify-content:flex-start;
         align-items:flex-start;
-        overflow:scroll;
+        overflow-y:auto;
     }
 
     .portfolio-popup__container--close {
@@ -133,10 +152,10 @@
             width:50%;
         }
         .portfolio-popup__container__image {
-            width:30%;
+            width:50%;
         }
         .portfolio-popup__container__content {
-            width:70%;
+            width:50%;
         }
     }
 
@@ -144,7 +163,7 @@
         .portfolio-items {
             width:100%;
         }
-        .portfolio-popup__overcontainer {
+        .portfolio-popup__container {
             flex-direction:column;
         }
         .portfolio-popup__container__image {

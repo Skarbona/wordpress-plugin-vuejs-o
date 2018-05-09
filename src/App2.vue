@@ -12,9 +12,9 @@
                         </tr>
                         <tr v-if="getLanguageEN">
                             <th align="left">Adressess</th>
-                            <th align="left">Dostępność</th>
-                            <th align="left">Piętro EN</th>
-                            <th align="left">Pow EN</th>
+                            <th align="left">Availability</th>
+                            <th align="left">Floor</th>
+                            <th align="left">Area</th>
                             <th align="left">Contact</th>
                         </tr>
                     </thead>
