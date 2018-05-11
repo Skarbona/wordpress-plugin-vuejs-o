@@ -19,7 +19,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <v-fs-tr-table v-for="(portfolio,index) in portfolioItems" :key="index" :portfolio="portfolio" ></v-fs-tr-table>
+                        <v-fs-tr-table v-for="(portfolio,index) in dostepnoscItems" :key="index" :portfolio="portfolio" ></v-fs-tr-table>
                     </tbody>
                 </table>
             </div>
@@ -35,8 +35,8 @@
             'v-fs-tr-table': Table
         },
         computed: {
-            portfolioItems() {
-                return this.$store.getters['wordpressRest/getPortfolioData'];
+            dostepnoscItems() {
+                return this.$store.getters['wordpressRest/getDostepnoscData'];
             },
             getLanguagePL() {
                 return document.documentElement.lang === 'pl-PL'
@@ -49,7 +49,7 @@
         },
         created() {
 
-                this.$store.dispatch('wordpressRest/getPortfolio');
+                this.$store.dispatch('wordpressRest/getDostepnosc');
         }
     }
 </script>

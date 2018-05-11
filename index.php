@@ -20,11 +20,13 @@ define('PORTFOLIO_PLUGIN_URL',__FILE__);
 include('includes/enqueue.php');
 include('includes/restapi.php');
 include('includes/googleAPI.php');
+include('includes/admin/init.php');
 
 //Hooks
 add_action( 'wp_enqueue_scripts', 'fs_plugin_scripts', 100);
 add_action( 'init', 'fs_add_avada_portfolio_to_rest', 25 );
 add_filter('acf/fields/google_map/api', 'fs_acf_google_map_api');
+add_action('init','fs_dostepnosc_init');
 
 
 

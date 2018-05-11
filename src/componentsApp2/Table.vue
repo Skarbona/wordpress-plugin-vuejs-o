@@ -4,8 +4,11 @@
             <i class="fa fa-map-marker"></i>
             {{ portfolio.title.rendered }}
         </td>
-        <td align="center">
+        <td align="center" v-if="portfolio.acf.dostepny_od_zaraz === 'false'">
             {{ portfolio.acf.dostepnosc }}
+        </td>
+        <td align="center" v-if="portfolio.acf.dostepny_od_zaraz === 'true'">
+            DOSTĘPNY OD ZARAZ
         </td>
         <td align="center">
             {{ portfolio.acf.pietro }}
