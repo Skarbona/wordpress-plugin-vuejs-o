@@ -4,18 +4,18 @@
                 <table width="100%">
                     <thead>
                         <tr v-if="getLanguagePL">
-                            <th align="left">Adres</th>
-                            <th align="left">Dostępność</th>
-                            <th align="left">Piętro</th>
-                            <th align="left">Powierzchnia</th>
-                            <th align="left">Kontakt</th>
+                            <th align="left">Lokalizacja</th>
+                            <th style="text-align:center;">Dostępność</th>
+                            <th style="text-align:center;">Piętro</th>
+                            <th style="text-align:center;">Powierzchnia</th>
+                            <th align="left"></th>
                         </tr>
                         <tr v-if="getLanguageEN">
-                            <th align="left">Adressess</th>
-                            <th align="left">Availability</th>
-                            <th align="left">Floor</th>
-                            <th align="left">Area</th>
-                            <th align="left">Contact</th>
+                            <th align="left">Localisation</th>
+                            <th style="text-align:center;">Availability</th>
+                            <th style="text-align:center;">Floor</th>
+                            <th style="text-align:center;">Area</th>
+                            <th align="left"></th>
                         </tr>
                     </thead>
                     <tbody>
@@ -54,6 +54,9 @@
     }
 </script>
 
-<style lang="scss">
-
+<style lang="scss" scoped>
+    .table-1 table th {
+        background: #005500;
+        color: #fff;
+    }
 </style>

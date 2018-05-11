@@ -1,7 +1,12 @@
 <template>
    <div class="portfolio-items">
        <h3 class="portfolio-items--click" @click="changeVisibility"> {{ portfolio.title.rendered }} </h3>
-       <img class="portfolio-items--preview" @click="changeVisibility" :src="imgURL">
+       <slider animation="fade"  :speed="1000" :auto="false">
+           <slider-item v-for="(slide, index) in list" :key="index">
+               <img :src="slide.url" class="portfolio-items__image"  @click="changeVisibility">
+           </slider-item>
+       </slider>
+
        <div class="portfolio-popup" v-show="portfolioVisibility">
            <div class="portfolio-popup__overcontainer">
                <div class="portfolio-popup__container">
@@ -11,19 +16,26 @@
                        </a>
                    </div>
                    <div class="portfolio-popup__container__image">
-                       <img :src="imgURL">
+                       <slider animation="fade" :speed="1000" :auto="false">
+                           <slider-item v-for="(slide, index) in list" :key="index">
+                               <img :src="slide.url" class="portfolio-items__image">
+                           </slider-item>
+                       </slider>
                         <ul v-if="getLanguagePL">
                            <li>Adres: {{ portfolio.acf.adres.address }}</li>
-                           <li>Dostępność: {{ portfolio.acf.dostepnosc }}</li>
-                           <li>Piętro: {{ portfolio.acf.pietro }}</li>
-                           <li>Powierzchnia: {{ portfolio.acf.powierzchnia }}</li>
+                           <li>Dostępność: <a href="#dostepnosc" @click="changeVisibility">Sprawdź dostępność</a></li>
                         </ul>
                         <ul v-if="getLanguageEN">
                            <li>Adressess: {{ portfolio.acf.adres.address }}</li>
-                           <li>Availability: {{ portfolio.acf.dostepnosc }}</li>
-                           <li>Floor: {{ portfolio.acf.pietro }}</li>
-                           <li>Area: {{ portfolio.acf.powierzchnia }}</li>
+                           <li>Availability: <a href="#dostepnosc"  @click="changeVisibility">Check Availability</a></li>
                         </ul>
+                       <iframe
+                               width="100%"
+                               height="350"
+                               frameborder="0" style="border:0"
+                               :src="mapsAdres"
+                               allowfullscreen>
+                       </iframe>
                    </div>
                    <div class="portfolio-popup__container__content">
                        <h3 class="portfolio-popup__container__content__title">{{ portfolio.title.rendered }}</h3>
@@ -38,11 +50,13 @@
 </template>
 
 <script>
+    import { Slider, SliderItem } from 'vue-easy-slider';
     export default {
         data() {
             return {
-                imgURL : this.portfolio._embedded['wp:featuredmedia']['0'].source_url,
                 portfolioVisibility : false,
+                list: this.portfolio.acf.galeria,
+                mapsAdres: 'https://www.google.com/maps/embed/v1/place?key=AIzaSyBOd6ZrLJa1kSCQYrp6ucDElSkUVddLoPQ&q=' + this.portfolio.acf.adres.lat + ',' + this.portfolio.acf.adres.lng
 
         }
         },
@@ -61,12 +75,25 @@
             }
         },
         props: ['portfolio'],
+        components: {
+            Slider,
+            SliderItem
+        }
 
 
 
     }
 </script>
 <style>
+    ul {
+        list-style-type: none;
+        padding-left:10px;
+    }
+
+    .portfolio-items .slider {
+        margin:10px;
+    }
+
     .portfolio-items--click,.portfolio-items--preview {
         cursor:pointer;
     }
@@ -143,6 +170,19 @@
         .portfolio-popup__container__content {
             max-width:40%;
         }
+        .portfolio-items__image {
+            width:100%;
+            height:300px;
+            object-fit:cover;
+        }
+        .portfolio-popup__container__image .portfolio-items__image {
+            width:100%;
+            height:600px;
+            object-fit:cover;
+        }
+        .portfolio-popup__container__image .slider {
+            width: 50vw!important;
+        }
 
     }
 
@@ -156,6 +196,20 @@
         }
         .portfolio-popup__container__content {
             width:50%;
+        }
+
+        .portfolio-items__image {
+            width:100%;
+            height:300px;
+            object-fit:cover;
+        }
+        .portfolio-popup__container__image .portfolio-items__image {
+            width:100%;
+            height:60vh;
+            object-fit:cover;
+        }
+        .portfolio-popup__container__image .slider {
+            width: 40vw!important;
         }
     }
 
@@ -171,6 +225,20 @@
         }
         .portfolio-popup__container__content {
             width:100%;
+        }
+
+        .portfolio-items__image {
+            width:100%;
+            height:300px;
+            object-fit:cover;
+        }
+        .portfolio-popup__container__image .portfolio-items__image {
+            width:100%;
+            height:80vh;
+            object-fit:cover;
+        }
+        .portfolio-popup__container__image .slider {
+            width: 80vw!important;
         }
     }
 
