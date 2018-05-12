@@ -3,7 +3,7 @@
        <h3 class="portfolio-items--click" @click="changeVisibility"> {{ portfolio.title.rendered }} </h3>
        <slider animation="fade"  :speed="1000" :auto="false">
            <slider-item v-for="(slide, index) in list" :key="index">
-               <img :src="slide.url" class="portfolio-items__image"  @click="changeVisibility">
+               <img :src="slide.url" class="portfolio-items__image"  @click="changeVisibility" style="cursor:pointer;">
            </slider-item>
        </slider>
 
