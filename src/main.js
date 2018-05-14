@@ -2,6 +2,7 @@ import Vue from 'vue'
 import App from './App.vue'
 import App2 from './App2.vue'
 import Cookie from './Cookie.vue'
+import Mapa from './Mapa.vue'
 import store from './store/store'
 
 
@@ -22,4 +23,13 @@ new Vue({
     el: '#cookieInfo',
     render: h => h(Cookie)
 });
+
+
+
+new Vue({
+    el: '#mapaGoogle',
+    store: store,
+    render: h => h(Mapa)
+});
+
 

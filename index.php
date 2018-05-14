@@ -26,7 +26,7 @@ include('includes/admin/init.php');
 add_action( 'wp_enqueue_scripts', 'fs_plugin_scripts', 100);
 add_action( 'init', 'fs_add_avada_portfolio_to_rest', 25 );
 add_filter('acf/fields/google_map/api', 'fs_acf_google_map_api');
-add_action('init','fs_dostepnosc_init');
+add_action('init','fs_own_post_type_init');
 
 
 
