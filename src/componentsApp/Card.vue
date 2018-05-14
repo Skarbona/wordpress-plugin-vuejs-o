@@ -177,7 +177,7 @@
         }
         .portfolio-popup__container__image .portfolio-items__image {
             width:100%;
-            height:600px;
+            height:100%;
             object-fit:cover;
         }
         .portfolio-popup__container__image .slider {
@@ -205,7 +205,7 @@
         }
         .portfolio-popup__container__image .portfolio-items__image {
             width:100%;
-            height:60vh;
+            height:100%;
             object-fit:cover;
         }
         .portfolio-popup__container__image .slider {
@@ -234,7 +234,7 @@
         }
         .portfolio-popup__container__image .portfolio-items__image {
             width:100%;
-            height:80vh;
+            height:100%;
             object-fit:cover;
         }
         .portfolio-popup__container__image .slider {
