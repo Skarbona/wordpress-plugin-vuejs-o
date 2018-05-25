@@ -18,7 +18,7 @@
         </td>
         <td>
             <a href="#kontakt" class="fusion-background-highlight"><span class="fusion-button button-default button-large">KONTAKT</span></a>
-            <div class="portfolio-items">
+            <div class="portfolio-items" @click="changeVisibilityC">
                 <div class="portfolio-popup" v-show="portfolioVisibility">
                     <div class="portfolio-popup__overcontainer">
                         <div class="portfolio-popup__container">
@@ -33,13 +33,7 @@
                                         <img :src="slide.url" class="portfolio-items__image">
                                     </slider-item>
                                 </slider>
-                                <iframe
-                                        width="100%"
-                                        height="350"
-                                        frameborder="0" style="border:0"
-                                        :src="mapsAdres"
-                                        allowfullscreen>
-                                </iframe>
+                                <div class="google-map" :id="googleSingleMap"></div>
                             </div>
                             <div class="portfolio-popup__container__content">
                                 <h3 class="portfolio-popup__container__content__title">{{ portfolio.title.rendered }}</h3>
@@ -64,14 +58,27 @@
 
                 portfolioVisibility : false,
                 list: this.portfolio.acf.galeria,
-                mapsAdres: 'https://www.google.com/maps/embed/v1/place?key=AIzaSyBOd6ZrLJa1kSCQYrp6ucDElSkUVddLoPQ&q=' + this.portfolio.acf.adres.lat + ',' + this.portfolio.acf.adres.lng
+                googleSingleMap: 'googleSingleMap' + this.portfolio.id
+
 
             }
         },
         methods: {
+
+            changeVisibilityC(e) {
+                if(e.target.className === "portfolio-popup__overcontainer") {
+                    jQuery('.fusion-header-wrapper').removeClass('visibility-index');
+                    jQuery('#portfolio').removeClass('visibility-only-z-index');
+                    return this.portfolioVisibility = !this.portfolioVisibility;
+                }
+
+            },
             changeVisibility(){
-                jQuery('.fusion-header-wrapper').toggleClass('visibility-index');
-                return this.portfolioVisibility = !this.portfolioVisibility;
+
+                    jQuery('.fusion-header-wrapper').toggleClass('visibility-index');
+                    jQuery('#portfolio').toggleClass('visibility-only-z-index');
+                    return this.portfolioVisibility = !this.portfolioVisibility;
+
             }
         },
         computed: {
@@ -85,12 +92,191 @@
         components: {
             Slider,
             SliderItem
+        },
+        mounted(){
+
+
+            let street = {lat: Number(this.portfolio.acf.adres.lat), lng: Number(this.portfolio.acf.adres.lng) };
+
+            let map = new google.maps.Map(document.getElementById(this.googleSingleMap), {
+                zoom: 12,
+                center: street,
+                styles: [
+                    {
+                        "elementType": "geometry",
+                        "stylers": [
+                            {
+                                "color": "#f5f5f5"
+                            }
+                        ]
+                    },
+                    {
+                        "elementType": "labels.icon",
+                        "stylers": [
+                            {
+                                "visibility": "off"
+                            }
+                        ]
+                    },
+                    {
+                        "elementType": "labels.text.fill",
+                        "stylers": [
+                            {
+                                "color": "#616161"
+                            }
+                        ]
+                    },
+                    {
+                        "elementType": "labels.text.stroke",
+                        "stylers": [
+                            {
+                                "color": "#f5f5f5"
+                            }
+                        ]
+                    },
+                    {
+                        "featureType": "administrative.land_parcel",
+                        "elementType": "labels.text.fill",
+                        "stylers": [
+                            {
+                                "color": "#bdbdbd"
+                            }
+                        ]
+                    },
+                    {
+                        "featureType": "poi",
+                        "elementType": "geometry",
+                        "stylers": [
+                            {
+                                "color": "#eeeeee"
+                            }
+                        ]
+                    },
+                    {
+                        "featureType": "poi",
+                        "elementType": "labels.text.fill",
+                        "stylers": [
+                            {
+                                "color": "#757575"
+                            }
+                        ]
+                    },
+                    {
+                        "featureType": "poi.park",
+                        "elementType": "geometry",
+                        "stylers": [
+                            {
+                                "color": "#e5e5e5"
+                            }
+                        ]
+                    },
+                    {
+                        "featureType": "poi.park",
+                        "elementType": "labels.text.fill",
+                        "stylers": [
+                            {
+                                "color": "#9e9e9e"
+                            }
+                        ]
+                    },
+                    {
+                        "featureType": "road",
+                        "elementType": "geometry",
+                        "stylers": [
+                            {
+                                "color": "#ffffff"
+                            }
+                        ]
+                    },
+                    {
+                        "featureType": "road.arterial",
+                        "elementType": "labels.text.fill",
+                        "stylers": [
+                            {
+                                "color": "#757575"
+                            }
+                        ]
+                    },
+                    {
+                        "featureType": "road.highway",
+                        "elementType": "geometry",
+                        "stylers": [
+                            {
+                                "color": "#dadada"
+                            }
+                        ]
+                    },
+                    {
+                        "featureType": "road.highway",
+                        "elementType": "labels.text.fill",
+                        "stylers": [
+                            {
+                                "color": "#616161"
+                            }
+                        ]
+                    },
+                    {
+                        "featureType": "road.local",
+                        "elementType": "labels.text.fill",
+                        "stylers": [
+                            {
+                                "color": "#9e9e9e"
+                            }
+                        ]
+                    },
+                    {
+                        "featureType": "transit.line",
+                        "elementType": "geometry",
+                        "stylers": [
+                            {
+                                "color": "#e5e5e5"
+                            }
+                        ]
+                    },
+                    {
+                        "featureType": "transit.station",
+                        "elementType": "geometry",
+                        "stylers": [
+                            {
+                                "color": "#eeeeee"
+                            }
+                        ]
+                    },
+                    {
+                        "featureType": "water",
+                        "elementType": "geometry",
+                        "stylers": [
+                            {
+                                "color": "#c9c9c9"
+                            }
+                        ]
+                    },
+                    {
+                        "featureType": "water",
+                        "elementType": "labels.text.fill",
+                        "stylers": [
+                            {
+                                "color": "#9e9e9e"
+                            }
+                        ]
+                    }
+                ]
+            });
+            let marker = new google.maps.Marker({
+                position: street,
+                icon: '/wp-content/plugins/chiliit/ikona.png',
+                map: map
+            });
         }
 
     }
 </script>
 
 <style>
+    .google-map {
+        width:100%;
+        height:350px;
+    }
     .table--open-popup {
         cursor:pointer;
     }
@@ -182,6 +368,7 @@
         }
         .portfolio-popup__container__image .slider {
             width: 50vw!important;
+            height:400px!important;
         }
 
     }

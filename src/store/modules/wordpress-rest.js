@@ -58,8 +58,7 @@ const mutations = {
 
 
         }
-        console.log(data);
-        console.log(state.labels);
+
         state.bounds = new google.maps.LatLngBounds();
         const element = document.getElementById(state.mapName);
         const mapCentre = state.mapyData[0];
@@ -234,6 +233,7 @@ const mutations = {
             const marker = new google.maps.Marker({
                 position,
                 map: this.map,
+                icon: '/wp-content/plugins/chiliit/ikona.png',
                 title: state.labels[labelIndex++]
             });
             state.markers.push(marker);
@@ -274,6 +274,8 @@ const actions = {
             })
             .catch( error => console.log(error))
     }
+
+
 
 
 };
