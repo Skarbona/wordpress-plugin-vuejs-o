@@ -58,18 +58,31 @@
         methods: {
 
             changeVisibilityC(e) {
-                if(e.target.className === "portfolio-popup__overcontainer") {
+
+                if(e.target.className === "portfolio-popup__overcontainer" ) {
                     jQuery('.fusion-header-wrapper').removeClass('visibility-index');
-                    jQuery('#dostepnosc').removeClass('visibility-only-z-index');
-                    return this.portfolioVisibility = !this.portfolioVisibility;
+                    jQuery('#portfolio').removeClass('visibility-only-z-index');
+                    return this.portfolioVisibility = false;
                 }
 
             },
             changeVisibility(){
 
                 jQuery('.fusion-header-wrapper').toggleClass('visibility-index');
-                jQuery('#dostepnosc').toggleClass('visibility-only-z-index');
+                jQuery('#portfolio').toggleClass('visibility-only-z-index');
                 return this.portfolioVisibility = !this.portfolioVisibility;
+
+
+
+            },
+            changeVisibilityESC(e){
+                if(e.keyCode === 27) {
+                    jQuery('.fusion-header-wrapper').removeClass('visibility-index');
+                    jQuery('#portfolio').removeClass('visibility-only-z-index');
+                    return this.portfolioVisibility = false;
+                }
+
+
             }
         },
         computed: {
@@ -89,10 +102,13 @@
         },
         mounted(){
 
+            window.addEventListener('keydown', this.changeVisibilityESC);
+
             let street = {lat: Number(this.portfolio.acf.adres.lat), lng: Number(this.portfolio.acf.adres.lng) };
 
             let map = new google.maps.Map(document.getElementById(this.googleSingleMap), {
-                zoom: 12,
+                zoom: 18,
+                mapTypeId: 'satellite',
                 center: street,
                 styles: [
                     {
@@ -336,7 +352,7 @@
     .portfolio-items .portfolio-items--preview {
         width: 100%;
         height:300px;
-        object-fit:cover;
+        object-fit:contain;
         padding:5px;
     }
     .portfolio-popup__container__image,
@@ -361,12 +377,12 @@
         .portfolio-items__image {
             width:100%;
             height:300px;
-            object-fit:cover;
+            object-fit:contain;
         }
         .portfolio-popup__container__image .portfolio-items__image {
             width:100%;
             height:100%;
-            object-fit:cover;
+            object-fit:contain;
         }
         .portfolio-popup__container__image .slider {
             width: 50vw!important;
@@ -390,12 +406,12 @@
         .portfolio-items__image {
             width:100%;
             height:300px;
-            object-fit:cover;
+            object-fit:contain;
         }
         .portfolio-popup__container__image .portfolio-items__image {
             width:100%;
             height:100%;
-            object-fit:cover;
+            object-fit:contain;
         }
         .portfolio-popup__container__image .slider {
             width: 40vw!important;
@@ -419,12 +435,12 @@
         .portfolio-items__image {
             width:100%;
             height:300px;
-            object-fit:cover;
+            object-fit:contain;
         }
         .portfolio-popup__container__image .portfolio-items__image {
             width:100%;
             height:100%;
-            object-fit:cover;
+            object-fit:contain;
         }
         .portfolio-popup__container__image .slider {
             width: 80vw!important;

@@ -61,15 +61,17 @@
                 googleSingleMap: 'googleSingleMap' + this.portfolio.id
 
 
+
             }
         },
         methods: {
 
             changeVisibilityC(e) {
-                if(e.target.className === "portfolio-popup__overcontainer") {
+
+                if(e.target.className === "portfolio-popup__overcontainer" ) {
                     jQuery('.fusion-header-wrapper').removeClass('visibility-index');
                     jQuery('#portfolio').removeClass('visibility-only-z-index');
-                    return this.portfolioVisibility = !this.portfolioVisibility;
+                    return this.portfolioVisibility = false;
                 }
 
             },
@@ -79,7 +81,19 @@
                     jQuery('#portfolio').toggleClass('visibility-only-z-index');
                     return this.portfolioVisibility = !this.portfolioVisibility;
 
+
+
+            },
+            changeVisibilityESC(e){
+                if(e.keyCode === 27) {
+                    jQuery('.fusion-header-wrapper').removeClass('visibility-index');
+                    jQuery('#portfolio').removeClass('visibility-only-z-index');
+                    return this.portfolioVisibility = false;
+                }
+
+
             }
+
         },
         computed: {
             getLanguagePL() {
@@ -94,13 +108,14 @@
             SliderItem
         },
         mounted(){
-
+            window.addEventListener('keydown', this.changeVisibilityESC);
 
             let street = {lat: Number(this.portfolio.acf.adres.lat), lng: Number(this.portfolio.acf.adres.lng) };
 
             let map = new google.maps.Map(document.getElementById(this.googleSingleMap), {
-                zoom: 12,
+                zoom: 18,
                 center: street,
+                mapTypeId: 'satellite',
                 styles: [
                     {
                         "elementType": "geometry",
@@ -359,12 +374,12 @@
         .portfolio-items__image {
             width:100%;
             height:300px;
-            object-fit:cover;
+            object-fit:contain;
         }
         .portfolio-popup__container__image .portfolio-items__image {
             width:100%;
             height:600px;
-            object-fit:cover;
+            object-fit:contain;
         }
         .portfolio-popup__container__image .slider {
             width: 50vw!important;
@@ -388,12 +403,12 @@
         .portfolio-items__image {
             width:100%;
             height:300px;
-            object-fit:cover;
+            object-fit:contain;
         }
         .portfolio-popup__container__image .portfolio-items__image {
             width:100%;
             height:60vh;
-            object-fit:cover;
+            object-fit:contain;
         }
         .portfolio-popup__container__image .slider {
             width: 40vw!important;
@@ -417,12 +432,12 @@
         .portfolio-items__image {
             width:100%;
             height:300px;
-            object-fit:cover;
+            object-fit:contain;
         }
         .portfolio-popup__container__image .portfolio-items__image {
             width:100%;
             height:80vh;
-            object-fit:cover;
+            object-fit:contain;
         }
         .portfolio-popup__container__image .slider {
             width: 80vw!important;
