@@ -8,7 +8,8 @@
             {{ portfolio.acf.dostepnosc }}
         </td>
         <td align="center" v-if="portfolio.acf.dostepny_od_zaraz === 'true'">
-            DOSTĘPNY OD ZARAZ
+            <span v-if="getLanguagePL">DOSTĘPNY OD ZARAZ</span>
+            <span v-if="getLanguageEN">AVAILABLE IMMEDIATELY</span>
         </td>
         <td align="center">
             {{ portfolio.acf.pietro }}
@@ -17,7 +18,10 @@
             {{ portfolio.acf.powierzchnia }} m<sup>2</sup>
         </td>
         <td>
-            <a href="#kontakt" class="fusion-background-highlight"><span class="fusion-button button-default button-large">KONTAKT</span></a>
+            <a href="#kontakt" class="fusion-background-highlight">
+                <span  v-if="getLanguagePL" class="fusion-button button-default button-large">KONTAKT</span>
+                <span  v-if="getLanguageEN" class="fusion-button button-default button-large">CONTACT</span>
+            </a>
             <div class="portfolio-items" @click="changeVisibilityC">
                 <div class="portfolio-popup" v-show="portfolioVisibility">
                     <div class="portfolio-popup__overcontainer">
