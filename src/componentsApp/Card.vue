@@ -22,11 +22,11 @@
                            </slider-item>
                        </slider>
                         <ul v-if="getLanguagePL" style="list-style-type:none;">
-                           <li>Adres: {{ portfolio.acf.adres.address }}</li>
+                           <li>Adres: {{ portfolio.acf.adres_do_wyswietlenia }}</li>
                            <li>Dostępność: <a href="#dostepnosc" @click="changeVisibility">Sprawdź dostępność</a></li>
                         </ul>
                         <ul v-if="getLanguageEN"  style="list-style-type:none;">
-                           <li>Adressess: {{ portfolio.acf.adres.address }}</li>
+                           <li>Address: {{ portfolio.acf.adres_do_wyswietlenia }}</li>
                            <li>Availability: <a href="#dostepnosc"  @click="changeVisibility">Check Availability</a></li>
                         </ul>
 
@@ -64,6 +64,7 @@
                     jQuery('#portfolio').removeClass('visibility-only-z-index');
                     return this.portfolioVisibility = false;
                 }
+
 
             },
             changeVisibility(){
@@ -276,6 +277,8 @@
                 icon: '/wp-content/plugins/chiliit/ikona.png',
                 map: map
             });
+
+
         }
 
 

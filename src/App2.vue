@@ -11,7 +11,7 @@
                             <th align="left"></th>
                         </tr>
                         <tr v-if="getLanguageEN">
-                            <th align="left">Localisation</th>
+                            <th align="left">Location</th>
                             <th style="text-align:center;">Availability</th>
                             <th style="text-align:center;">Floor</th>
                             <th style="text-align:center;">Area</th>
