@@ -3,13 +3,14 @@
         <td @click="changeVisibility" class="table--open-popup">
             <i class="fa fa-map-marker"></i>
             {{ portfolio.title.rendered }}
+
         </td>
         <td align="center" v-if="portfolio.acf.dostepny_od_zaraz === 'false'">
             {{ portfolio.acf.dostepnosc }}
         </td>
         <td align="center" v-if="portfolio.acf.dostepny_od_zaraz === 'true'">
-            <span v-if="getLanguagePL">DOSTĘPNY OD ZARAZ</span>
-            <span v-if="getLanguageEN">AVAILABLE IMMEDIATELY</span>
+            <span v-if="getLanguagePL">OD ZARAZ</span>
+            <span v-if="getLanguageEN">IMMEDIATELY</span>
         </td>
         <td align="center">
             {{ portfolio.acf.pietro }}
@@ -37,6 +38,13 @@
                                         <img :src="slide.url" class="portfolio-items__image">
                                     </slider-item>
                                 </slider>
+                                <ul v-if="getLanguagePL" style="list-style-type:none;">
+                                    <li>Adres: {{ portfolio.acf.adres_do_wyswietlenia }}</li>
+                                </ul>
+                                <ul v-if="getLanguageEN"  style="list-style-type:none;">
+                                    <li>Address: {{ portfolio.acf.adres_do_wyswietlenia }}</li>
+                                </ul>
+
                                 <div class="google-map" :id="googleSingleMap"></div>
                             </div>
                             <div class="portfolio-popup__container__content">
